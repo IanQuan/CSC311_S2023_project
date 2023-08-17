@@ -69,7 +69,7 @@ def main():
     lr = 0.005
     iterations = 20
 
-    # Ensemble method 1
+    # Ensemble method
     theta_list, beta_list = ensemble(data, val_data, lr, iterations)
 
     # Evaluate the performance on the validation and test data
