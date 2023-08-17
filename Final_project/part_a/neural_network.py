@@ -179,10 +179,10 @@ def main():
     k_values = [10, 50, 100]
     # Set optimization hyperparameters.
     lr_values = [0.005, 0.001, 0.02]
-    num_epoch_values = [25, 50]
+    num_epoch_values = [25, 35, 45]
     lamb_values = [0, 0.001, 0.01, 0.1, 1]
 
-    # Q3(c)
+    # # Q3(c)
     max_accuracy, k_star, optimal_epoch, optimal_lr = 0, 0, 0, 0
     # Find the optimal hyperparamters
     for k in k_values:
@@ -237,10 +237,10 @@ def main():
     lamb_values = [0.001, 0.01, 0.1, 1]
     max_accuracy, optimal_lamb = 0, 0
 
-    # Continue using k = 100, lr = 0.005, num_epoch = 25, find the optimal value of lambda
+    # Continue using k = 100, lr = 0.005, num_epoch = 50, find the optimal value of lambda
     for lamb in lamb_values:
         model = AutoEncoder(num_question=train_matrix.shape[1], k=50)
-        train(model, 0.02, lamb, train_matrix, zero_train_matrix, valid_data, 25)
+        train(model, 0.02, lamb, train_matrix, zero_train_matrix, valid_data, 50)
 
         valid_accuracy = evaluate(model, zero_train_matrix, valid_data)
         if valid_accuracy > max_accuracy:
@@ -252,7 +252,7 @@ def main():
 
     # Find the validation and test accuracy with the optimal lambda
     model = AutoEncoder(num_question=train_matrix.shape[1], k=50)
-    train(model, 0.02, optimal_lamb, train_matrix, zero_train_matrix, valid_data, 25)
+    train(model, 0.02, optimal_lamb, train_matrix, zero_train_matrix, valid_data, 50)
     valid_accuracy = evaluate(model, zero_train_matrix, valid_data)
     test_accuracy = evaluate(model, zero_train_matrix, test_data)
     print("Validation Accuracy: {}".format(valid_accuracy))
@@ -260,23 +260,6 @@ def main():
     #####################################################################
     #                       END OF YOUR CODE                            #
     #####################################################################
-    print("k: 10, learning rate: 0.005, epoch: 25, Validation Accuracy: 0.6364662715213096\n"
-          "k: 10, learning rate: 0.005, epoch: 50, Validation Accuracy: 0.6518487157775896\n"
-          "k: 10, learning rate: 0.001, epoch: 25, Validation Accuracy: 0.5750776178379904\n"
-          "k: 10, learning rate: 0.001, epoch: 50, Validation Accuracy: 0.6089472198701665\n"
-          "k: 10, learning rate: 0.02, epoch: 25, Validation Accuracy: 0.6799322607959356\n"
-          "k: 10, learning rate: 0.02, epoch: 50, Validation Accuracy: 0.6827547276319503\n"
-          "k: 50, learning rate: 0.005, epoch: 25, Validation Accuracy: 0.6521309624611911\n"
-          "k: 50, learning rate: 0.005, epoch: 50, Validation Accuracy: 0.6827547276319503\n"
-          "k: 50, learning rate: 0.001, epoch: 25, Validation Accuracy: 0.6233418007338414\n"
-          "...\n"
-          "k: 500, learning rate: 0.001, epoch: 50, Validation Accuracy: 0.6323736946090883\n"
-          "k: 500, learning rate: 0.02, epoch: 25, Validation Accuracy: 0.683460344340954\n"
-          "k: 500, learning rate: 0.02, epoch: 50, Validation Accuracy: 0.6646909398814564\n"
-          "Optimal k*: 50\n"
-          "Optimal learning rate: 0.02\n"
-          "Optimal epoch: 25\n"
-          "Optimal validation accuracy: 0.6883996613039797\n")
 
 if __name__ == "__main__":
     main()
