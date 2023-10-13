@@ -36,10 +36,38 @@ Compare the two methods and apply L2 regularization.
 - Evaluate the impact of ensemble learning.
 
 ## Part B - Custom Algorithm Modification
-Propose a modification to one of the algorithms implemented in Part A to improve performance.
+We introduce feature enrichment by considering students' ability and experiment with a new loss function for improved model performance.
 
-Provide a formal description of the modification, figures or diagrams, and a detailed comparison with baseline models.
-Highlight limitations and potential future work.
+### Feature Enrichment: Students' Ability
+**Motivation:**
+
+To enhance the model's understanding of student performance, we augment the feature space by appending a vector of students' ability (θ) to the input data. This enrichment aims to provide the neural network with more nuanced information, enabling it to capture complex patterns and make informed predictions based on students' abilities.
+
+**Hypothesis:**
+
+The inclusion of students' ability information in the input data will improve the overall model performance. Both training and validation accuracy are expected to increase compared to the base model.
+
+**Algorithm Box:**
+1. Concatenate the original input data with the students’ ability tensor according to the userID.
+2. Increase the dimension of the linear function g.
+3. Train the model with the new input data.
+4. Tune the hyper-parameters and evaluate the model.
+
+### Binary Cross Entropy Loss
+**Motivation:**
+
+To further enhance the Student Ability Model, we adopt the Binary Cross Entropy Loss. This loss function is well-suited for binary classification problems, where the model predicts correctness with class labels 0 and 1. It is particularly beneficial when handling class imbalance, as it penalizes misclassifications more heavily, making the model sensitive to the minority class.
+
+**Hypothesis:** 
+
+With the Binary Cross Entropy Loss, we anticipate improved training and validation accuracy compared to the base model.
+
+**Algorithm Box:**
+1. Change the loss function from Mean Squared Error (MSE) to Binary Cross Entropy (BCE).
+2. Implement feature enrichment by including students' ability in the input data.
+3. Train the model with the new loss function.
+4. Fine-tune hyperparameters and evaluate model performance.
+
 
 ## Report
 A detailed report explaining the project's methodology, findings, and insights is included in the repository. It provides a comprehensive understanding of the project's goals and outcomes.
